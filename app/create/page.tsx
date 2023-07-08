@@ -20,7 +20,19 @@ const PromptForm = () => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm({
+    defaultValues: async () => {
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/users/1"
+      );
+      const data = await response.json();
+      return {
+        username: "Batman",
+        email: data.email,
+        channel: "StarPlus",
+      };
+    },
+  });
 
   const onSubmit = (data: FormValues) => {
     console.log("form submitted", data);
