@@ -1,4 +1,11 @@
+"use client";
+import { useForm } from "react-hook-form";
+
 const PromptForm = () => {
+  const form = useForm();
+  const { register } = form;
+  const { name, ref, onChange, onBlur } = register("username");
+
   return (
     <div className="bg-slate-300 flex flex-col w-3/6 gap-2 px-4 py-4 rounded-md">
       <h1 className="self-center">Prompt Form</h1>
@@ -9,7 +16,10 @@ const PromptForm = () => {
           className="rounded-sm"
           type="text"
           id="username"
-          name="username"
+          name={name}
+          ref={ref}
+          onChange={onChange}
+          onBlur={onBlur}
         />
 
         <label htmlFor="email">E-mail</label>
