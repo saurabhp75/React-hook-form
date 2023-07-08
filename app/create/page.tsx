@@ -15,9 +15,12 @@ type FormValues = {
 };
 
 const PromptForm = () => {
-  const form = useForm<FormValues>();
-  const { register, control, handleSubmit, formState } = form;
-  const { errors } = formState;
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>();
 
   const onSubmit = (data: FormValues) => {
     console.log("form submitted", data);
