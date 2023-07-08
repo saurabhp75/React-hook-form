@@ -16,7 +16,8 @@ type FormValues = {
 
 const PromptForm = () => {
   const form = useForm<FormValues>();
-  const { register, control, handleSubmit } = form;
+  const { register, control, handleSubmit, formState } = form;
+  const { errors } = formState;
 
   const onSubmit = (data: FormValues) => {
     console.log("form submitted", data);
@@ -43,6 +44,7 @@ const PromptForm = () => {
             },
           })}
         />
+        <p className="text-red-600">{errors.username?.message}</p>
 
         <label htmlFor="email">E-mail</label>
         <input
@@ -57,6 +59,7 @@ const PromptForm = () => {
             },
           })}
         />
+        <p className="text-red-600">{errors.email?.message}</p>
 
         <label htmlFor="channel">Channel</label>
         <input
@@ -64,9 +67,13 @@ const PromptForm = () => {
           type="text"
           id="channel"
           {...register("channel", {
-            required: "channel is required",
+            required: {
+              value: true,
+              message: "channel is required",
+            },
           })}
         />
+        <p className="text-red-600">{errors.channel?.message}</p>
 
         <button className="rounded-sm bg-blue-300 ">Submit</button>
       </form>
