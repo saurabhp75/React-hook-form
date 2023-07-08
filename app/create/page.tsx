@@ -37,7 +37,10 @@ const PromptForm = () => {
           type="text"
           id="username"
           {...register("username", {
-            required: "username is required",
+            required: {
+              value: true,
+              message: "username is required",
+            },
           })}
         />
 
