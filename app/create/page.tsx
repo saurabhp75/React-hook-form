@@ -60,6 +60,20 @@ const PromptForm = () => {
                 /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
               message: "Invalid email format",
             },
+            validate: {
+              notAdmin: (fieldValue) => {
+                return (
+                  fieldValue != "admin@example.com" ||
+                  "Enter a different email address"
+                );
+              },
+              notBlackListed: (fieldValue) => {
+                return (
+                  !fieldValue.endsWith("baddomain.com") ||
+                  "This domain is not supported"
+                );
+              },
+            },
           })}
         />
         <p className="text-red-600">{errors.email?.message}</p>
