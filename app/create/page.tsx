@@ -12,6 +12,10 @@ type FormValues = {
   username: string;
   email: string;
   channel: string;
+  social: {
+    twitter: string;
+    facebook: string;
+  };
 };
 
 const PromptForm = () => {
@@ -25,6 +29,10 @@ const PromptForm = () => {
       username: "Batman",
       email: "",
       channel: "",
+      social: {
+        twitter: "",
+        facebook: "",
+      },
     },
   });
 
@@ -97,6 +105,22 @@ const PromptForm = () => {
           })}
         />
         <p className="text-red-600">{errors.channel?.message}</p>
+
+        <label htmlFor="twitter">Twitter</label>
+        <input
+          className="rounded-sm"
+          type="text"
+          id="twitter"
+          {...register("social.twitter")}
+        />
+
+        <label htmlFor="facebook">Facebook</label>
+        <input
+          className="rounded-sm"
+          type="text"
+          id="facebook"
+          {...register("social.facebook")}
+        />
 
         <button className="rounded-sm bg-blue-300 ">Submit</button>
       </form>
