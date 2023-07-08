@@ -16,6 +16,7 @@ type FormValues = {
     twitter: string;
     facebook: string;
   };
+  phoneNumbers: string[];
 };
 
 const PromptForm = () => {
@@ -33,6 +34,7 @@ const PromptForm = () => {
         twitter: "",
         facebook: "",
       },
+      phoneNumbers: ["", ""],
     },
   });
 
@@ -120,6 +122,22 @@ const PromptForm = () => {
           type="text"
           id="facebook"
           {...register("social.facebook")}
+        />
+
+        <label htmlFor="primary-phone">Primary phone number</label>
+        <input
+          className="rounded-sm"
+          type="text"
+          id="primary-phone"
+          {...register("phoneNumbers.0")}
+        />
+
+        <label htmlFor="secondary-phone">Secondary phone number</label>
+        <input
+          className="rounded-sm"
+          type="text"
+          id="secondary-phone"
+          {...register("phoneNumbers.1")}
         />
 
         <button className="rounded-sm bg-blue-300 ">Submit</button>
