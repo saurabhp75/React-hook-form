@@ -8,15 +8,25 @@ const DevTool: React.ElementType = dynamic(
   { ssr: false }
 );
 
+type FormValues = {
+  username: string;
+  email: string;
+  channel: string;
+};
+
 const PromptForm = () => {
-  const form = useForm();
-  const { register, control } = form;
+  const form = useForm<FormValues>();
+  const { register, control, handleSubmit } = form;
+
+  const onSubmit = (data: FormValues) => {
+    console.log("form submitted", data);
+  };
 
   return (
     <div className="bg-slate-300 flex flex-col w-3/6 gap-2 px-4 py-4 rounded-md">
       <h1 className="self-center">Prompt Form</h1>
 
-      <form className="flex flex-col gap-2">
+      <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="username">Username</label>
         <input
           className="rounded-sm"
