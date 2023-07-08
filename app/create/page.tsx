@@ -71,6 +71,10 @@ const PromptForm = () => {
           type="email"
           id="email"
           {...register("email", {
+            required: {
+              value: true,
+              message: "email is required",
+            },
             pattern: {
               value:
                 /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
@@ -113,24 +117,42 @@ const PromptForm = () => {
           className="rounded-sm"
           type="text"
           id="twitter"
-          {...register("social.twitter")}
+          {...register("social.twitter", {
+            required: {
+              value: true,
+              message: "Twitter is required",
+            },
+          })}
         />
+        <p className="text-red-600">{errors.social?.twitter?.message}</p>
 
         <label htmlFor="facebook">Facebook</label>
         <input
           className="rounded-sm"
           type="text"
           id="facebook"
-          {...register("social.facebook")}
+          {...register("social.facebook", {
+            required: {
+              value: true,
+              message: "Facebook is required",
+            },
+          })}
         />
+        <p className="text-red-600">{errors.social?.facebook?.message}</p>
 
         <label htmlFor="primary-phone">Primary phone number</label>
         <input
           className="rounded-sm"
           type="text"
           id="primary-phone"
-          {...register("phoneNumbers.0")}
+          {...register("phoneNumbers.0", {
+            required: {
+              value: true,
+              message: "Primary phone number is required",
+            },
+          })}
         />
+        <p className="text-red-600">{errors.phoneNumbers?.[0]?.message}</p>
 
         <label htmlFor="secondary-phone">Secondary phone number</label>
         <input
