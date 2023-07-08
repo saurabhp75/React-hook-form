@@ -1,9 +1,16 @@
 "use client";
 import { useForm } from "react-hook-form";
+import dynamic from "next/dynamic";
+// import { DevTool } from "@hookform/devtools";
+// This fixes the hydration error due to devtools
+const DevTool: React.ElementType = dynamic(
+  () => import("@hookform/devtools").then((module) => module.DevTool),
+  { ssr: false }
+);
 
 const PromptForm = () => {
   const form = useForm();
-  const { register } = form;
+  const { register, control } = form;
 
   return (
     <div className="bg-slate-300 flex flex-col w-3/6 gap-2 px-4 py-4 rounded-md">
@@ -19,13 +26,24 @@ const PromptForm = () => {
         />
 
         <label htmlFor="email">E-mail</label>
-        <input className="rounded-sm" type="email" id="email" name="email" />
+        <input
+          className="rounded-sm"
+          type="email"
+          id="email"
+          {...register("email")}
+        />
 
         <label htmlFor="channel">Channel</label>
-        <input className="rounded-sm" type="text" id="channel" name="channel" />
+        <input
+          className="rounded-sm"
+          type="text"
+          id="channel"
+          {...register("channel")}
+        />
 
         <button className="rounded-sm bg-blue-300 ">Submit</button>
       </form>
+      <DevTool control={control} placement="top-right" />
     </div>
   );
 };
