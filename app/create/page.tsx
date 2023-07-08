@@ -26,13 +26,19 @@ const PromptForm = () => {
     <div className="bg-slate-300 flex flex-col w-3/6 gap-2 px-4 py-4 rounded-md">
       <h1 className="self-center">Prompt Form</h1>
 
-      <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className="flex flex-col gap-2"
+        onSubmit={handleSubmit(onSubmit)}
+        noValidate
+      >
         <label htmlFor="username">Username</label>
         <input
           className="rounded-sm"
           type="text"
           id="username"
-          {...register("username")}
+          {...register("username", {
+            required: "username is required",
+          })}
         />
 
         <label htmlFor="email">E-mail</label>
@@ -40,7 +46,13 @@ const PromptForm = () => {
           className="rounded-sm"
           type="email"
           id="email"
-          {...register("email")}
+          {...register("email", {
+            pattern: {
+              value:
+                /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+              message: "Invalid email format",
+            },
+          })}
         />
 
         <label htmlFor="channel">Channel</label>
@@ -48,7 +60,9 @@ const PromptForm = () => {
           className="rounded-sm"
           type="text"
           id="channel"
-          {...register("channel")}
+          {...register("channel", {
+            required: "channel is required",
+          })}
         />
 
         <button className="rounded-sm bg-blue-300 ">Submit</button>
