@@ -8,6 +8,8 @@ const DevTool: React.ElementType = dynamic(
   { ssr: false }
 );
 
+let renderCount = 0;
+
 type FormValues = {
   username: string;
   email: string;
@@ -62,9 +64,10 @@ const PromptForm = () => {
 
   const watchForm = watch();
 
+  renderCount++;
   return (
     <div className="bg-slate-300 flex flex-col w-3/6 gap-2 px-4 py-4 rounded-md">
-      <h1 className="self-center">Prompt Form</h1>
+      <h1 className="self-center">Prompt Form ({renderCount / 2})</h1>
       <h2 className="self-center">
         Watched value: {JSON.stringify(watchForm)}
       </h2>
