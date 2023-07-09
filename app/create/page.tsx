@@ -21,6 +21,7 @@ type FormValues = {
     number: string;
   }[];
   age: number;
+  dob: Date;
 };
 
 const PromptForm = () => {
@@ -45,6 +46,7 @@ const PromptForm = () => {
         },
       ],
       age: 0,
+      dob: new Date(),
     },
   });
 
@@ -215,6 +217,21 @@ const PromptForm = () => {
           })}
         />
         <p className="text-red-600">{errors.age?.message}</p>
+
+        <label htmlFor="dob">Channel</label>
+        <input
+          className="rounded-sm"
+          type="date"
+          id="dob"
+          {...register("dob", {
+            valueAsDate: true,
+            required: {
+              value: true,
+              message: "Date of birth is required",
+            },
+          })}
+        />
+        <p className="text-red-600">{errors.dob?.message}</p>
 
         <button className="rounded-sm bg-blue-300 ">Submit</button>
       </form>
