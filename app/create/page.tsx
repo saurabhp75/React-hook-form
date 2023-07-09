@@ -2,6 +2,8 @@
 import { useForm, useFieldArray, FieldErrors } from "react-hook-form";
 import dynamic from "next/dynamic";
 import { useEffect } from "react";
+import z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 // import { DevTool } from "@hookform/devtools";
 // This fixes the hydration error due to devtools
 const DevTool: React.ElementType = dynamic(
@@ -9,7 +11,27 @@ const DevTool: React.ElementType = dynamic(
   { ssr: false }
 );
 
-let renderCount = 0;
+// let renderCount = 0;
+
+const schema = z.object({
+  username: z.string().nonempty("Username is required"),
+  email: z.string().nonempty("email is required").email("Invalid email format"),
+  channel: z.string().nonempty("channel is required"),
+  social: z.object({
+    twitter: z.string(),
+    facebook: z.string(),
+  }),
+  phoneNumbers: z.string().array(), // same as z.array(z.string())
+  phNumbers: z
+    .object({
+      number: z.string(),
+    })
+    .array(),
+  age: z.number({
+    required_error: "Age is required",
+  }),
+  dob: z.date(),
+});
 
 type FormValues = {
   username: string;
@@ -71,6 +93,7 @@ const PromptForm = () => {
       dob: new Date(),
     },
     mode: "onBlur", // validation on "all" "onTouched", "onChange", "onSubmit"(default)
+    resolver: zodResolver(schema),
   });
 
   // console.log("Field and form state:", { touchedFields, dirtyFields, isDirty, isValid });
