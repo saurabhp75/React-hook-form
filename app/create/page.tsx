@@ -45,6 +45,7 @@ const PromptForm = () => {
       isSubmitting,
       isSubmitted,
       isSubmitSuccessful,
+      submitCount,
     },
     watch,
     getValues,
@@ -70,7 +71,12 @@ const PromptForm = () => {
   });
 
   // console.log("Field and form state:", { touchedFields, dirtyFields, isDirty, isValid });
-  console.log("form State:", { isSubmitting, isSubmitted, isSubmitSuccessful });
+  console.log("form State:", {
+    isSubmitting,
+    isSubmitted,
+    isSubmitSuccessful,
+    submitCount,
+  });
 
   const { fields, append, remove } = useFieldArray({
     name: "phNumbers",
