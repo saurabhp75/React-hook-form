@@ -281,7 +281,7 @@ const PromptForm = () => {
         <p className="text-red-600">{errors.dob?.message}</p>
 
         <div className="flex gap-2 justify-around">
-          <button className="rounded-sm bg-blue-300 py-1 px-2">Submit</button>
+          <button className="rounded-sm bg-blue-300 py-1 px-2" disabled={!isDirty}>Submit</button>
           <button
             className="rounded-sm bg-blue-300 py-1 px-2"
             type="button"
