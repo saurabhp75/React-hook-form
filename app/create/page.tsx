@@ -77,6 +77,8 @@ const PromptForm = () => {
     isSubmitted,
     isSubmitSuccessful,
     submitCount,
+    isDirty,
+    isValid,
   });
 
   const { fields, append, remove } = useFieldArray({
@@ -123,7 +125,7 @@ const PromptForm = () => {
 
   // const watchForm = watch();
 
-  renderCount++;
+  // renderCount++;
   return (
     <div className="bg-slate-300 flex flex-col w-3/6 gap-2 px-4 py-4 rounded-md">
       <h1 className="self-center">Prompt Form</h1>
@@ -177,6 +179,13 @@ const PromptForm = () => {
                   !fieldValue.endsWith("baddomain.com") ||
                   "This domain is not supported"
                 );
+              },
+              emailAvailable: async (fieldValue) => {
+                const response = await fetch(
+                  `https://jsonplaceholder.typicode.com/users?email=${fieldValue}`
+                );
+                const data = await response.json();
+                return data.length === 0 || "Email already exists";
               },
             },
           })}
@@ -307,7 +316,7 @@ const PromptForm = () => {
         <div className="flex gap-2 justify-around">
           <button
             className="rounded-sm bg-blue-500 disabled:opacity-70 py-1 px-2"
-            disabled={!isDirty || !isValid || isSubmitting}
+            disabled={!isDirty || isSubmitting}
           >
             Submit
           </button>
