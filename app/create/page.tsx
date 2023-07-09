@@ -60,7 +60,7 @@ const PromptForm = () => {
     console.log("form submitted", data);
   };
 
-  const watchUsername = watch("username");
+  const watchUsername = watch(["username", "email"]);
 
   return (
     <div className="bg-slate-300 flex flex-col w-3/6 gap-2 px-4 py-4 rounded-md">
