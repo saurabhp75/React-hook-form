@@ -299,7 +299,7 @@ const PromptForm = () => {
         <div className="flex gap-2 justify-around">
           <button
             className="rounded-sm bg-blue-500 disabled:opacity-70 py-1 px-2"
-            // disabled={!isDirty || !isValid}
+            disabled={!isDirty || !isValid || isSubmitting}
           >
             Submit
           </button>
