@@ -75,7 +75,7 @@ const PromptForm = () => {
   }, [watch]);
 
   const handleGetValues = () => {
-    console.log("Get values", getValues());
+    console.log("Get values", getValues("social"));
   };
 
   // const watchForm = watch();
