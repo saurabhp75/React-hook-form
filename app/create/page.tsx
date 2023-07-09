@@ -1,6 +1,7 @@
 "use client";
 import { useForm, useFieldArray } from "react-hook-form";
 import dynamic from "next/dynamic";
+import { useEffect } from "react";
 // import { DevTool } from "@hookform/devtools";
 // This fixes the hydration error due to devtools
 const DevTool: React.ElementType = dynamic(
@@ -62,15 +63,23 @@ const PromptForm = () => {
     console.log("form submitted", data);
   };
 
-  const watchForm = watch();
+  useEffect(() => {
+    const subscription = watch((value) => {
+      console.log(value);
+    });
+
+    return () => subscription.unsubscribe();
+  }, [watch]);
+
+  // const watchForm = watch();
 
   renderCount++;
   return (
     <div className="bg-slate-300 flex flex-col w-3/6 gap-2 px-4 py-4 rounded-md">
       <h1 className="self-center">Prompt Form ({renderCount / 2})</h1>
-      <h2 className="self-center">
+      {/* <h2 className="self-center">
         Watched value: {JSON.stringify(watchForm)}
-      </h2>
+      </h2> */}
 
       <form
         className="flex flex-col gap-2"
