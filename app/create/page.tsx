@@ -20,6 +20,7 @@ type FormValues = {
   phNumbers: {
     number: string;
   }[];
+  age: number;
 };
 
 const PromptForm = () => {
@@ -43,6 +44,7 @@ const PromptForm = () => {
           number: "",
         },
       ],
+      age: 0,
     },
   });
 
@@ -198,6 +200,21 @@ const PromptForm = () => {
             </button>
           </div>
         </div>
+
+        <label htmlFor="age">Age</label>
+        <input
+          className="rounded-sm"
+          type="number"
+          id="age"
+          {...register("age", {
+            valueAsNumber: true,
+            required: {
+              value: true,
+              message: "age is required",
+            },
+          })}
+        />
+        <p className="text-red-600">{errors.age?.message}</p>
 
         <button className="rounded-sm bg-blue-300 ">Submit</button>
       </form>
