@@ -69,6 +69,7 @@ const PromptForm = () => {
       age: 0,
       dob: new Date(),
     },
+    mode: "onBlur", // validation on "all" "onTouched", "onChange", "onSubmit"(default)
   });
 
   // console.log("Field and form state:", { touchedFields, dirtyFields, isDirty, isValid });
