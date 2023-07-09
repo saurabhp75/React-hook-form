@@ -102,7 +102,7 @@ const PromptForm = () => {
   renderCount++;
   return (
     <div className="bg-slate-300 flex flex-col w-3/6 gap-2 px-4 py-4 rounded-md">
-      <h1 className="self-center">Prompt Form ({renderCount / 2})</h1>
+      <h1 className="self-center">Prompt Form</h1>
       {/* <h2 className="self-center">
         Watched value: {JSON.stringify(watchForm)}
       </h2> */}
@@ -281,7 +281,12 @@ const PromptForm = () => {
         <p className="text-red-600">{errors.dob?.message}</p>
 
         <div className="flex gap-2 justify-around">
-          <button className="rounded-sm bg-blue-300 py-1 px-2" disabled={!isDirty}>Submit</button>
+          <button
+            className="rounded-sm bg-blue-300 py-1 px-2"
+            disabled={!isDirty}
+          >
+            Submit
+          </button>
           <button
             className="rounded-sm bg-blue-300 py-1 px-2"
             type="button"
