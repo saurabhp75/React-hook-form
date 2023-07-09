@@ -28,12 +28,15 @@ type FormValues = {
 };
 
 const PromptForm = () => {
+  // getValues does not re-render form or subscribe to
+  // input changes
   const {
     register,
     control,
     handleSubmit,
     formState: { errors },
     watch,
+    getValues,
   } = useForm({
     defaultValues: {
       username: "Batman",
@@ -70,6 +73,10 @@ const PromptForm = () => {
 
     return () => subscription.unsubscribe();
   }, [watch]);
+
+  const handleGetValues = () => {
+    console.log("Get values", getValues());
+  };
 
   // const watchForm = watch();
 
@@ -252,6 +259,13 @@ const PromptForm = () => {
         <p className="text-red-600">{errors.dob?.message}</p>
 
         <button className="rounded-sm bg-blue-300 ">Submit</button>
+        <button
+          className="rounded-sm bg-blue-300 "
+          type="button"
+          onClick={handleGetValues}
+        >
+          Get values
+        </button>
       </form>
       <DevTool control={control} placement="top-right" />
     </div>
