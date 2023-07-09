@@ -94,6 +94,13 @@ const PromptForm = () => {
     console.log("Form Errors:", errors);
   };
 
+  // Clear form on successful submit
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset();
+    }
+  }, [isSubmitSuccessful, reset]);
+
   // useEffect(() => {
   //   const subscription = watch((value) => {
   //     console.log(value);
