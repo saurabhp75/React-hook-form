@@ -60,12 +60,14 @@ const PromptForm = () => {
     console.log("form submitted", data);
   };
 
-  const watchUsername = watch(["username", "email"]);
+  const watchForm = watch();
 
   return (
     <div className="bg-slate-300 flex flex-col w-3/6 gap-2 px-4 py-4 rounded-md">
       <h1 className="self-center">Prompt Form</h1>
-      <h2 className="self-center">Watched value: {watchUsername}</h2>
+      <h2 className="self-center">
+        Watched value: {JSON.stringify(watchForm)}
+      </h2>
 
       <form
         className="flex flex-col gap-2"
