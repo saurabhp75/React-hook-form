@@ -37,6 +37,7 @@ const PromptForm = () => {
     formState: { errors },
     watch,
     getValues,
+    setValue,
   } = useForm({
     defaultValues: {
       username: "Batman",
@@ -76,6 +77,10 @@ const PromptForm = () => {
 
   const handleGetValues = () => {
     console.log("Get values", getValues(["username", "channel"]));
+  };
+
+  const handleSetValue = () => {
+    setValue("username", "");
   };
 
   // const watchForm = watch();
@@ -258,14 +263,23 @@ const PromptForm = () => {
         />
         <p className="text-red-600">{errors.dob?.message}</p>
 
-        <button className="rounded-sm bg-blue-300 ">Submit</button>
-        <button
-          className="rounded-sm bg-blue-300 "
-          type="button"
-          onClick={handleGetValues}
-        >
-          Get values
-        </button>
+        <div className="flex gap-2 justify-around">
+          <button className="rounded-sm bg-blue-300 py-1 px-2">Submit</button>
+          <button
+            className="rounded-sm bg-blue-300 py-1 px-2"
+            type="button"
+            onClick={handleGetValues}
+          >
+            Get values
+          </button>
+          <button
+            className="rounded-sm bg-blue-300 py-1 px-2"
+            type="button"
+            onClick={handleSetValue}
+          >
+            Set value
+          </button>
+        </div>
       </form>
       <DevTool control={control} placement="top-right" />
     </div>
