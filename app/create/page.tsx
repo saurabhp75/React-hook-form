@@ -1,5 +1,5 @@
 "use client";
-import { useForm, useFieldArray } from "react-hook-form";
+import { useForm, useFieldArray, FieldErrors } from "react-hook-form";
 import dynamic from "next/dynamic";
 import { useEffect } from "react";
 // import { DevTool } from "@hookform/devtools";
@@ -71,6 +71,12 @@ const PromptForm = () => {
     console.log("form submitted", data);
   };
 
+  // This is called when form submission fails due
+  // to errors.
+  const onError = (errors: FieldErrors<FormValues>) => {
+    console.log("Form Errors:", errors);
+  };
+
   useEffect(() => {
     const subscription = watch((value) => {
       console.log(value);
@@ -103,7 +109,7 @@ const PromptForm = () => {
 
       <form
         className="flex flex-col gap-2"
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(onSubmit, onError)}
         noValidate
       >
         <label htmlFor="username">Username</label>
