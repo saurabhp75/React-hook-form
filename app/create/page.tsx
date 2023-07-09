@@ -36,7 +36,16 @@ const PromptForm = () => {
     register,
     control,
     handleSubmit,
-    formState: { errors, touchedFields, dirtyFields, isDirty, isValid },
+    formState: {
+      errors,
+      touchedFields,
+      dirtyFields,
+      isDirty,
+      isValid,
+      isSubmitting,
+      isSubmitted,
+      isSubmitSuccessful,
+    },
     watch,
     getValues,
     setValue,
@@ -60,7 +69,8 @@ const PromptForm = () => {
     },
   });
 
-  console.log({ touchedFields, dirtyFields, isDirty, isValid });
+  // console.log("Field and form state:", { touchedFields, dirtyFields, isDirty, isValid });
+  console.log("form State:", { isSubmitting, isSubmitted, isSubmitSuccessful });
 
   const { fields, append, remove } = useFieldArray({
     name: "phNumbers",
@@ -77,13 +87,13 @@ const PromptForm = () => {
     console.log("Form Errors:", errors);
   };
 
-  useEffect(() => {
-    const subscription = watch((value) => {
-      console.log(value);
-    });
+  // useEffect(() => {
+  //   const subscription = watch((value) => {
+  //     console.log(value);
+  //   });
 
-    return () => subscription.unsubscribe();
-  }, [watch]);
+  //   return () => subscription.unsubscribe();
+  // }, [watch]);
 
   const handleGetValues = () => {
     console.log("Get values", getValues(["username", "channel"]));
@@ -283,7 +293,7 @@ const PromptForm = () => {
         <div className="flex gap-2 justify-around">
           <button
             className="rounded-sm bg-blue-500 disabled:opacity-70 py-1 px-2"
-            disabled={!isDirty || !isValid}
+            // disabled={!isDirty || !isValid}
           >
             Submit
           </button>
