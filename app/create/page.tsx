@@ -29,12 +29,14 @@ type FormValues = {
 
 const PromptForm = () => {
   // getValues does not re-render form or subscribe to
-  // input changes
+  // input changes.
+  // isDirty reepresents form state, and is used when
+  // submitting form.
   const {
     register,
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, touchedFields, dirtyFields, isDirty },
     watch,
     getValues,
     setValue,
@@ -57,6 +59,8 @@ const PromptForm = () => {
       dob: new Date(),
     },
   });
+
+  console.log({ touchedFields, dirtyFields, isDirty });
 
   const { fields, append, remove } = useFieldArray({
     name: "phNumbers",
