@@ -80,7 +80,11 @@ const PromptForm = () => {
   };
 
   const handleSetValue = () => {
-    setValue("username", "");
+    setValue("username", "", {
+      shouldValidate: true,
+      shouldDirty: true,
+      shouldTouch: true,
+    });
   };
 
   // const watchForm = watch();
