@@ -345,7 +345,7 @@ const PromptForm = () => {
           <button
             className="rounded-sm bg-blue-500 disabled:opacity-70 py-1 px-2"
             type="button"
-            onClick={() => trigger()}
+            onClick={() => trigger("channel")}
           >
             Validate
           </button>
