@@ -175,7 +175,7 @@ const PromptForm = () => {
           type="text"
           id="twitter"
           {...register("social.twitter", {
-            disabled: true,
+            disabled: watch("channel") === "",
             required: {
               value: true,
               message: "Twitter is required",
