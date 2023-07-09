@@ -1,5 +1,5 @@
 "use client";
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import dynamic from "next/dynamic";
 // import { DevTool } from "@hookform/devtools";
 // This fixes the hydration error due to devtools
@@ -17,6 +17,9 @@ type FormValues = {
     facebook: string;
   };
   phoneNumbers: string[];
+  phNumbers: {
+    number: string;
+  }[];
 };
 
 const PromptForm = () => {
@@ -35,7 +38,17 @@ const PromptForm = () => {
         facebook: "",
       },
       phoneNumbers: ["", ""],
+      phNumbers: [
+        {
+          number: "",
+        },
+      ],
     },
+  });
+
+  const { fields, append, remove } = useFieldArray({
+    name: "phNumbers",
+    control,
   });
 
   const onSubmit = (data: FormValues) => {
@@ -161,6 +174,30 @@ const PromptForm = () => {
           id="secondary-phone"
           {...register("phoneNumbers.1")}
         />
+
+        <div>
+          <label htmlFor="">List of phone numbers</label>
+          <div>
+            {fields.map((field, index) => {
+              return (
+                <div key={field.id}>
+                  <input
+                    type="text"
+                    {...register(`phNumbers.${index}.number` as const)}
+                  />
+                  {index > 0 && (
+                    <button type="button" onClick={() => remove(index)}>
+                      Remove
+                    </button>
+                  )}
+                </div>
+              );
+            })}
+            <button type="button" onClick={() => append({ number: "" })}>
+              Add phone number
+            </button>
+          </div>
+        </div>
 
         <button className="rounded-sm bg-blue-300 ">Submit</button>
       </form>
