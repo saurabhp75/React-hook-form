@@ -50,6 +50,7 @@ const PromptForm = () => {
     watch,
     getValues,
     setValue,
+    reset,
   } = useForm({
     defaultValues: {
       username: "Batman",
@@ -302,6 +303,12 @@ const PromptForm = () => {
             disabled={!isDirty || !isValid || isSubmitting}
           >
             Submit
+          </button>
+          <button
+            onClick={() => reset()}
+            className="rounded-sm bg-blue-500 disabled:opacity-70 py-1 px-2"
+          >
+            Reset
           </button>
           <button
             className="rounded-sm bg-blue-500 disabled:opacity-70 py-1 px-2"
