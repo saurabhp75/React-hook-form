@@ -167,12 +167,15 @@ const PromptForm = () => {
         />
         <p className="text-red-600">{errors.channel?.message}</p>
 
+        {/* Disabling a field also disables the validation and
+        the value undefined. */}
         <label htmlFor="twitter">Twitter</label>
         <input
           className="rounded-sm"
           type="text"
           id="twitter"
           {...register("social.twitter", {
+            disabled: true,
             required: {
               value: true,
               message: "Twitter is required",
