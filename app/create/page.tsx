@@ -36,7 +36,7 @@ const PromptForm = () => {
     register,
     control,
     handleSubmit,
-    formState: { errors, touchedFields, dirtyFields, isDirty },
+    formState: { errors, touchedFields, dirtyFields, isDirty, isValid },
     watch,
     getValues,
     setValue,
@@ -60,7 +60,7 @@ const PromptForm = () => {
     },
   });
 
-  console.log({ touchedFields, dirtyFields, isDirty });
+  console.log({ touchedFields, dirtyFields, isDirty, isValid });
 
   const { fields, append, remove } = useFieldArray({
     name: "phNumbers",
@@ -282,20 +282,20 @@ const PromptForm = () => {
 
         <div className="flex gap-2 justify-around">
           <button
-            className="rounded-sm bg-blue-300 py-1 px-2"
-            disabled={!isDirty}
+            className="rounded-sm bg-blue-500 disabled:opacity-70 py-1 px-2"
+            disabled={!isDirty || !isValid}
           >
             Submit
           </button>
           <button
-            className="rounded-sm bg-blue-300 py-1 px-2"
+            className="rounded-sm bg-blue-500 disabled:opacity-70 py-1 px-2"
             type="button"
             onClick={handleGetValues}
           >
             Get values
           </button>
           <button
-            className="rounded-sm bg-blue-300 py-1 px-2"
+            className="rounded-sm bg-blue-500 disabled:opacity-70 py-1 px-2"
             type="button"
             onClick={handleSetValue}
           >
